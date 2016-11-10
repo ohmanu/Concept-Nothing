@@ -1,7 +1,9 @@
 package com.oh.concept_nothing.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,14 +12,25 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "shot")
-public class Shot {
+public class Shot implements Serializable{
+	private static final long serialVersionUID = 3453051828628062828L;
+	
 	@Id
+	@Column(name="idshot")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	private String title;
 	private String source;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
+
+	public Shot() {}
+	
+	public Shot(String title, String source, Date date) {
+		this.title = title;
+		this.source = source;
+		this.date = date;
+	}
 
 	public String getTitle() {
 		return title;

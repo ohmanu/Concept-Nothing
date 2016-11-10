@@ -1,5 +1,8 @@
 package com.oh.concept_nothing.domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,19 +11,21 @@ import javax.persistence.Id;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 @Entity(name = "user")
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = 1851585218972519644L;
+
 	private static final String SALT = "bonsmrjsht";
 	
 	@Id
+	@Column(name="iduser")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	private String login;
 	private String password;
 	
 	public User() {};
 	
-	public User(long id, String login, String password) {
-		this.id = id;
+	public User(String login, String password) {
 		this.login = login;
 		this.password = encode(password);
 	}

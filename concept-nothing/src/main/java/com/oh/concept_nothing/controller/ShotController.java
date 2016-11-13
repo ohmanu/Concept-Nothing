@@ -1,5 +1,7 @@
 package com.oh.concept_nothing.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +14,9 @@ public class ShotController {
 	ShotService shotservice;
 
 	@GetMapping("/shots")
-	public String listAll() {
+	public String listAll(HttpServletRequest request) {
+		request.setAttribute("shots", shotservice.findAll());
 		
-		return shotservice.findAll().toString();
+		return "gallery/shots";
 	}
 }

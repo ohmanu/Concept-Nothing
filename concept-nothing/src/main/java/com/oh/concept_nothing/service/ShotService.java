@@ -24,4 +24,12 @@ public class ShotService {
 		
 		return shotList;
 	}
+	
+	public void save(Shot shot) {
+		shotRepository.save(shot);
+	}
+	
+	public void delete(int id) {
+		shotRepository.delete(id);
+	}
 }

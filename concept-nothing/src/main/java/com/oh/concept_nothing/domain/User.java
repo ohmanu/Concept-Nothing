@@ -1,12 +1,16 @@
 package com.oh.concept_nothing.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
@@ -20,8 +24,13 @@ public class User implements Serializable{
 	@Column(name="iduser")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String login;
+	
 	private String password;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Collection<Shot> shots = new ArrayList<Shot>();
 	
 	public User() {};
 	
@@ -44,6 +53,14 @@ public class User implements Serializable{
 
 	public String getPassword() {
 		return password;
+	}
+
+	public Collection<Shot> getShots() {
+		return shots;
+	}
+
+	public void setShots(Collection<Shot> shots) {
+		this.shots = shots;
 	}
 
 	@Override

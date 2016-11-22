@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,11 +21,18 @@ public class Shot implements Serializable{
 	@Column(name="idshot")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String title;
+	
 	private String source;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
+	@ManyToOne
+	@JoinColumn(name = "iduser")
+	private User user;
+	
 	public Shot() {}
 	
 	public Shot(String title, String source, Date date) {
@@ -58,6 +67,14 @@ public class Shot implements Serializable{
 
 	public long getId() {
 		return id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

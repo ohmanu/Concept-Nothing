@@ -2,9 +2,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-	<h2>Person Form</h2>
+	<h2>Shot</h2>
 	
-	<form:form action="/save" method="POST" modelAttribute="person">		
+	<form:form action="/up" method="POST" modelAttribute="shot">		
 			<form:hidden path="id" />
 		<p>
 			<form:label path="title">Title: </form:label>
@@ -13,7 +13,8 @@
 		
 		<p>
 			<form:label path="source">Source: </form:label>
-			<form:input path="source" />
+			
+			<input type="file" name="file">
 		</p>
 		
 		<p>

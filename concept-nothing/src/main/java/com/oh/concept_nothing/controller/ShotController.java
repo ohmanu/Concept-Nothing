@@ -30,4 +30,10 @@ public class ShotController {
 		
 		return "gallery/shots";
 	}
+	
+	@GetMapping("/up")
+	public String up(HttpServletRequest request) {
+		
+		return "gallery/up";
+	}
 }
